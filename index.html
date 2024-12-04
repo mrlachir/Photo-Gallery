@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Photo Gallery</title>
+    <style>
+        /* Style for the display area where the image and text will be shown */
+        #image {
+            width: 400px;
+            height: 300px;
+            background-color: #f0f0f0;
+            text-align: center;
+            line-height: 300px;
+            color: #555;
+            border: 1px solid #ccc;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Style for the image gallery */
+        .gallery {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .gallery img {
+            width: 100px;
+            height: 75px;
+            margin: 5px;
+            cursor: pointer;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .gallery img:hover {
+            border-color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Display area for image and text -->
+    <div id="image">
+        Hover over an image below to display here.
+    </div>
+
+    <!-- Gallery of images -->
+    <div class="gallery">
+        <img src="image1.jpg" alt="Image 1" onmouseover="upDate(this)" onmouseout="undo()">
+        <img src="image2.jpg" alt="Image 2" onmouseover="upDate(this)" onmouseout="undo()">
+        <img src="image3.jpg" alt="Image 3" onmouseover="upDate(this)" onmouseout="undo()">
+        <img src="image4.jpg" alt="Image 4" onmouseover="upDate(this)" onmouseout="undo()">
+    </div>
+
+    <!-- Inline JavaScript -->
+    <script>
+        // Function that updates the display area when mouse hovers over an image
+        function upDate(previewPic) {
+            // Log the alt text and src to the console for debugging
+            console.log("Alt text: " + previewPic.alt);
+            console.log("Source URL: " + previewPic.src);
+
+            // Update the text content of the #image div to show the alt text of the hovered image
+            document.getElementById('image').textContent = previewPic.alt;
+
+            // Update the background image of the #image div to the hovered image's source URL
+            document.getElementById('image').style.backgroundImage = `url('${previewPic.src}')`;
+        }
+
+        // Function that resets the display area when mouse leaves an image
+        function undo() {
+            // Reset the background image of the #image div to the original (empty)
+            document.getElementById('image').style.backgroundImage = "url('')";
+
+            // Reset the text content to the original message
+            document.getElementById('image').textContent = "Hover over an image below to display here.";
+        }
+    </script>
+
+</body>
+</html>
